@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lawrence Louise G. Manalili's E-Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #fdf6ec;
+    --warm-brown: #7c4f2f;
+    --terracotta: #c0694a;
+    --blush: #e8b89a;
+    --soft-gold: #d4a96a;
+    --dark: #2c1a0e;
+    --mid: #5a3820;
+    --light-tan: #f5e6d3;
+    --white: #fff9f4;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(253,246,236,0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--blush);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--warm-brown); font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 1.6rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: 0.8rem; font-weight: 500;
+    color: var(--mid); letter-spacing: 0.06em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+
+  /* ── COVER ── */
+  #cover {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fdf6ec 0%, #f5e0c8 50%, #edd5b8 100%);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding-top: 60px;
+  }
+  .cover-decor {
+    position: absolute; border-radius: 50%; opacity: 0.18;
+  }
+  .decor-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, var(--terracotta), transparent);
+    top: -150px; right: -150px;
+  }
+  .decor-2 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, var(--soft-gold), transparent);
+    bottom: -100px; left: -80px;
+  }
+  .decor-3 {
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, var(--warm-brown), transparent);
+    top: 40%; left: 10%; opacity: 0.1;
+  }
+
+  .cover-content {
+    text-align: center; position: relative; z-index: 1;
+    animation: fadeUp 1s ease both;
+  }
+  .cover-tag {
+    display: inline-block;
+    background: var(--terracotta);
+    color: #fff; font-size: 0.7rem; letter-spacing: 0.15em;
+    text-transform: uppercase; padding: 0.3rem 1rem;
+    border-radius: 20px; margin-bottom: 1.5rem;
+    font-weight: 500;
+  }
+  .cover-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: var(--warm-brown); line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+  .cover-name em { color: var(--terracotta); font-style: italic; }
+  .cover-program {
+    font-size: 1rem; color: var(--mid); margin-bottom: 0.3rem;
+    font-weight: 400; letter-spacing: 0.04em;
+  }
+  .cover-company {
+    font-size: 0.85rem; color: var(--warm-brown);
+    font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+  .cover-divider {
+    width: 60px; height: 3px;
+    background: linear-gradient(90deg, var(--terracotta), var(--soft-gold));
+    margin: 1.2rem auto;
+    border-radius: 2px;
+  }
+  .cover-scroll {
+    display: inline-flex; flex-direction: column; align-items: center;
+    gap: 0.4rem; color: var(--mid); font-size: 0.75rem;
+    letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7;
+    animation: bounce 2s infinite;
+  }
+  .cover-scroll svg { width: 20px; height: 20px; stroke: var(--terracotta); }
+
+  /* ── TABLE OF CONTENTS ── */
+  #toc {
+    background: var(--dark);
+    padding: 5rem 2rem;
+    position: relative; overflow: hidden;
+  }
+  #toc::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px,
+      transparent 1px, transparent 20px
+    );
+  }
+  .toc-inner { max-width: 900px; margin: 0 auto; position: relative; z-index: 1; }
+  .section-label {
+    font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--blush); margin-bottom: 0.5rem; font-weight: 500;
+  }
+  .toc-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; color: var(--cream); margin-bottom: 3rem;
+  }
+  .toc-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.2rem;
+  }
+  .toc-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 1.2rem 1.4rem;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: flex; align-items: flex-start; gap: 0.8rem;
+  }
+  .toc-item:hover {
+    background: rgba(192,105,74,0.2);
+    border-color: var(--terracotta);
+    transform: translateY(-3px);
+  }
+  .toc-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: var(--terracotta); line-height: 1;
+    flex-shrink: 0;
+  }
+  .toc-text { display: flex; flex-direction: column; }
+  .toc-name {
+    font-size: 0.85rem; color: var(--cream); font-weight: 500;
+    line-height: 1.3;
+  }
+  .toc-sub { font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 0.2rem; }
+
+  /* ── GENERIC SECTION ── */
+  .portfolio-section {
+    padding: 6rem 2rem;
+    max-width: 960px; margin: 0 auto;
+  }
+  .section-header { margin-bottom: 3rem; }
+  .section-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 5rem; color: var(--blush); opacity: 0.4;
+    line-height: 1; margin-bottom: -1.5rem; display: block;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem; color: var(--warm-brown);
+    position: relative; display: inline-block;
+  }
+  .section-title::after {
+    content: ''; display: block;
+    width: 50px; height: 3px;
+    background: linear-gradient(90deg, var(--terracotta), var(--soft-gold));
+    margin-top: 0.5rem; border-radius: 2px;
+  }
+
+  /* ── BIO SECTION ── */
+  #bio { background: var(--white); }
+  .bio-card {
+    background: var(--light-tan);
+    border-radius: 20px; padding: 2.5rem;
+    display: grid; grid-template-columns: auto 1fr; gap: 2.5rem;
+    align-items: start;
+    border: 1px solid var(--blush);
+  }
+  .bio-photo-placeholder {
+    width: 160px; height: 200px;
+    background: linear-gradient(135deg, var(--blush), var(--soft-gold));
+    border-radius: 14px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 0.5rem; color: var(--warm-brown); flex-shrink: 0;
+    border: 3px dashed rgba(124,79,47,0.3);
+  }
+  .bio-photo-placeholder svg { width: 40px; height: 40px; opacity: 0.5; }
+  .bio-photo-placeholder span { font-size: 0.65rem; text-align: center; opacity: 0.6; line-height: 1.4; }
+  .bio-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem; color: var(--warm-brown); margin-bottom: 0.3rem;
+  }
+  .bio-course {
+    font-size: 0.85rem; color: var(--terracotta); font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem;
+  }
+  .bio-desc {
+    font-size: 0.9rem; color: var(--mid); line-height: 1.8; margin-bottom: 1.5rem;
+  }
+  .bio-achievements { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .bio-achievements li {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.85rem; color: var(--mid);
+  }
+  .bio-achievements li::before {
+    content: '✦'; color: var(--terracotta); flex-shrink: 0; font-size: 0.7rem; margin-top: 0.1rem;
+  }
+
+  /* ── COMPANY SECTION ── */
+  #company { background: var(--cream); }
+  .company-card {
+    background: var(--white);
+    border: 1px solid var(--blush);
+    border-radius: 20px; padding: 2.5rem;
+  }
+  .company-logo-area {
+    width: 100%; height: 120px;
+    background: linear-gradient(135deg, var(--light-tan), var(--blush));
+    border-radius: 12px; margin-bottom: 2rem;
+    display: flex; align-items: center; justify-content: center;
+    border: 2px dashed rgba(124,79,47,0.25);
+    color: var(--mid); font-size: 0.8rem; letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .company-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem; color: var(--warm-brown); margin-bottom: 0.3rem;
+  }
+  .company-branch {
+    font-size: 0.8rem; color: var(--terracotta); text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 1.2rem; font-weight: 500;
+  }
+  .company-desc {
+    font-size: 0.9rem; color: var(--mid); line-height: 1.8; margin-bottom: 1.5rem;
+  }
+  .company-mvg {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem;
+  }
+  .mvg-card {
+    background: var(--light-tan); border-radius: 12px;
+    padding: 1.2rem; text-align: center;
+    border: 1px solid var(--blush);
+  }
+  .mvg-icon { font-size: 1.5rem; margin-bottom: 0.5rem; }
+  .mvg-label {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.12em;
+    color: var(--terracotta); font-weight: 600; margin-bottom: 0.4rem;
+  }
+  .mvg-text { font-size: 0.8rem; color: var(--mid); line-height: 1.5; }
+
+  /* ── WEEKLY REPORTS ── */
+  #weekly { background: var(--white); }
+  .week-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.2rem; }
+  .week-card {
+    background: var(--light-tan);
+    border: 1px solid var(--blush);
+    border-radius: 16px; padding: 1.5rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .week-card:hover { transform: translateY(-4px); box-shadow: 0 12px 30px rgba(124,79,47,0.12); }
+  .week-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; color: var(--blush); line-height: 1; margin-bottom: 0.5rem;
+  }
+  .week-dates {
+    font-size: 0.75rem; color: var(--terracotta); font-weight: 500;
+    text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.8rem;
+  }
+  .week-report {
+    font-size: 0.85rem; color: var(--mid); line-height: 1.7; margin-bottom: 1rem;
+  }
+  .week-photo-slot {
+    width: 100%; height: 80px;
+    background: linear-gradient(135deg, rgba(212,169,106,0.2), rgba(192,105,74,0.15));
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    border: 1.5px dashed rgba(124,79,47,0.25);
+    font-size: 0.7rem; color: var(--mid); letter-spacing: 0.06em;
+  }
+
+  /* ── SYNERGY JOURNALS ── */
+  #synergy { background: var(--cream); }
+  .conf-tabs { display: flex; gap: 0.8rem; margin-bottom: 2rem; }
+  .conf-tab {
+    padding: 0.5rem 1.2rem; border-radius: 20px; cursor: pointer;
+    font-size: 0.8rem; font-weight: 500; border: 1.5px solid var(--blush);
+    color: var(--mid); background: transparent; transition: all 0.2s;
+  }
+  .conf-tab.active, .conf-tab:hover {
+    background: var(--terracotta); color: #fff; border-color: var(--terracotta);
+  }
+  .conf-panel { display: none; }
+  .conf-panel.active { display: block; }
+  .synergy-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+  .synergy-card {
+    background: var(--white); border: 1px solid var(--blush);
+    border-radius: 16px; padding: 1.5rem;
+  }
+  .synergy-label {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em;
+    color: var(--terracotta); font-weight: 600; margin-bottom: 0.5rem;
+  }
+  .synergy-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; color: var(--warm-brown); margin-bottom: 0.8rem;
+  }
+  .synergy-photo {
+    width: 100%; height: 100px;
+    background: linear-gradient(135deg, var(--light-tan), var(--blush));
+    border-radius: 10px; margin-bottom: 0.8rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; color: var(--mid); border: 1.5px dashed rgba(124,79,47,0.25);
+  }
+  .synergy-text { font-size: 0.82rem; color: var(--mid); line-height: 1.7; }
+  .takeaway-list { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+  .takeaway-list li {
+    font-size: 0.82rem; color: var(--mid); padding-left: 1rem; position: relative;
+  }
+  .takeaway-list li::before {
+    content: '→'; position: absolute; left: 0;
+    color: var(--terracotta); font-size: 0.75rem;
+  }
+
+  /* ── CERTIFICATES ── */
+  #certificates { background: var(--white); }
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.2rem; }
+  .cert-card {
+    background: var(--light-tan);
+    border: 1px solid var(--blush); border-radius: 16px;
+    padding: 1.5rem; text-align: center;
+    transition: transform 0.2s;
+  }
+  .cert-card:hover { transform: scale(1.02); }
+  .cert-photo {
+    width: 100%; height: 130px;
+    background: linear-gradient(135deg, rgba(212,169,106,0.3), rgba(192,105,74,0.2));
+    border-radius: 10px; margin-bottom: 1rem;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; color: var(--mid); border: 1.5px dashed rgba(124,79,47,0.25);
+  }
+  .cert-name { font-size: 0.85rem; color: var(--warm-brown); font-weight: 500; }
+
+  /* ── OJT FORMS ── */
+  #ojt-forms { background: var(--cream); }
+  .forms-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1rem; }
+  .form-item {
+    background: var(--white); border: 1px solid var(--blush);
+    border-radius: 12px; padding: 1.2rem 1.4rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .form-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--terracotta), var(--soft-gold));
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .form-name { font-size: 0.82rem; color: var(--mid); font-weight: 500; line-height: 1.4; }
+  .forms-note {
+    background: linear-gradient(135deg, var(--light-tan), var(--blush));
+    border-radius: 12px; padding: 1.2rem 1.5rem;
+    font-size: 0.82rem; color: var(--mid); line-height: 1.7;
+    margin-top: 1.5rem; border-left: 4px solid var(--terracotta);
+  }
+
+  /* ── DOCUMENTATION ── */
+  #documentation { background: var(--white); }
+  .doc-photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+  .doc-slot {
+    background: linear-gradient(135deg, var(--light-tan), var(--blush));
+    border-radius: 14px; aspect-ratio: 4/3;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 0.4rem;
+    border: 1.5px dashed rgba(124,79,47,0.3);
+    font-size: 0.7rem; color: var(--mid); letter-spacing: 0.05em;
+    text-align: center; padding: 1rem;
+  }
+  .doc-slot svg { width: 28px; height: 28px; opacity: 0.4; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--dark);
+    padding: 3rem 2rem; text-align: center;
+  }
+  .footer-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem; color: var(--cream); margin-bottom: 0.4rem;
+  }
+  .footer-sub { font-size: 0.8rem; color: rgba(255,255,255,0.4); letter-spacing: 0.08em; }
+  .footer-divider {
+    width: 40px; height: 2px;
+    background: var(--terracotta);
+    margin: 1.2rem auto;
+  }
+  .footer-note { font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+
+  /* ── SEPARATOR ── */
+  .wave-sep {
+    width: 100%; line-height: 0; display: block;
+    overflow: hidden;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .bio-card { grid-template-columns: 1fr; }
+    .bio-photo-placeholder { width: 100%; height: 160px; }
+    .company-mvg { grid-template-columns: 1fr; }
+    .synergy-grid { grid-template-columns: 1fr; }
+    .doc-photo-grid { grid-template-columns: repeat(2, 1fr); }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">L.L.G. Manalili</span>
+  <ul class="nav-links">
+    <li><a href="#bio">Biography</a></li>
+    <li><a href="#company">Company</a></li>
+    <li><a href="#weekly">Reports</a></li>
+    <li><a href="#synergy">Journals</a></li>
+    <li><a href="#certificates">Certificates</a></li>
+    <li><a href="#ojt-forms">Forms</a></li>
+    <li><a href="#documentation">Documentation</a></li>
+  </ul>
+</nav>
+
+<!-- COVER -->
+<section id="cover">
+  <div class="cover-decor decor-1"></div>
+  <div class="cover-decor decor-2"></div>
+  <div class="cover-decor decor-3"></div>
+  <div class="cover-content">
+    <span class="cover-tag">OJT E-Portfolio · 2024–2025</span>
+    <h1 class="cover-name">Lawrence Louise<br><em>G. Manalili</em></h1>
+    <div class="cover-divider"></div>
+    <p class="cover-program">Bachelor of Science in Business Administration</p>
+    <p class="cover-program">Major in Marketing Management</p>
+    <p class="cover-company">Primer Group of Companies · DC SM Pampanga</p>
+    <div style="margin-top:2.5rem;" class="cover-scroll">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      scroll to explore
+    </div>
+  </div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<section id="toc">
+  <div class="toc-inner">
+    <p class="section-label">Navigation</p>
+    <h2 class="toc-title">Table of Contents</h2>
+    <div class="toc-grid">
+      <a class="toc-item" href="#bio">
+        <span class="toc-num">01</span>
+        <span class="toc-text"><span class="toc-name">My Biography</span><span class="toc-sub">Photo · Achievements · Ambition</span></span>
+      </a>
+      <a class="toc-item" href="#company">
+        <span class="toc-num">02</span>
+        <span class="toc-text"><span class="toc-name">Company Profile</span><span class="toc-sub">Primer Group of Companies</span></span>
+      </a>
+      <a class="toc-item" href="#weekly">
+        <span class="toc-num">03</span>
+        <span class="toc-text"><span class="toc-name">Weekly Accomplishment</span><span class="toc-sub">Narrative Reports · Photos</span></span>
+      </a>
+      <a class="toc-item" href="#synergy">
+        <span class="toc-num">04</span>
+        <span class="toc-text"><span class="toc-name">Synergy Reflective Journals</span><span class="toc-sub">Hybrid Conference Day 1 & 2</span></span>
+      </a>
+      <a class="toc-item" href="#certificates">
+        <span class="toc-num">05</span>
+        <span class="toc-text"><span class="toc-name">Certificates</span><span class="toc-sub">Photos of Certificates</span></span>
+      </a>
+      <a class="toc-item" href="#ojt-forms">
+        <span class="toc-num">06</span>
+        <span class="toc-text"><span class="toc-name">OJT Forms & Documents</span><span class="toc-sub">Evaluation · DTR · Waiver & more</span></span>
+      </a>
+      <a class="toc-item" href="#documentation">
+        <span class="toc-num">07</span>
+        <span class="toc-text"><span class="toc-name">Documentation</span><span class="toc-sub">Interview · Meetings · Orientation</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 1. BIOGRAPHY -->
+<section id="bio">
+  <div class="portfolio-section">
+    <div class="section-header">
+      <span class="section-num">01</span>
+      <h2 class="section-title">My Biography</h2>
+    </div>
+    <div class="bio-card">
+      <div class="bio-photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+        <span>Insert half-body<br>formal / uniform<br>photo here</span>
+      </div>
+      <div>
+        <h3 class="bio-name">Lawrence Louise G. Manalili</h3>
+        <p class="bio-course">BSBA — Marketing Management</p>
+        <p class="bio-desc">
+          A dedicated and motivated Business Administration student majoring in Marketing Management, currently undergoing On-the-Job Training at the Primer Group of Companies, DC SM Pampanga. Passionate about brand development, consumer behavior, and retail marketing, Lawrence Louise brings a positive attitude and eagerness to learn to every task and challenge encountered during the training period.
+        </p>
+        <p style="font-size:0.75rem; color:var(--terracotta); text-transform:uppercase; letter-spacing:0.1em; font-weight:600; margin-bottom:0.6rem;">Accomplishments & Ambitions</p>
+        <ul class="bio-achievements">
+          <li>Add your academic or personal accomplishment here (e.g., Dean's Lister, club officer, etc.)</li>
+          <li>Add another accomplishment or extracurricular involvement</li>
+          <li>Career ambition: to become a professional marketer specializing in brand management and retail strategy</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. COMPANY PROFILE -->
+<section id="company" style="background:var(--cream);">
+  <div class="portfolio-section">
+    <div class="section-header">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Company Profile</h2>
+    </div>
+    <div class="company-card">
+      <div class="company-logo-area">[ Insert Company Logo Here ]</div>
+      <h3 class="company-name">Primer Group of Companies</h3>
+      <p class="company-branch">DC SM Pampanga Branch</p>
+      <p class="company-desc">
+        Primer Group of Companies is one of the Philippines' leading retail and distribution conglomerates, known for bringing world-class lifestyle, sports, and outdoor brands to Filipino consumers. With a diverse portfolio of retail stores and distribution channels, Primer continues to grow as a trusted partner for both global brands and local customers across the country.
+      </p>
+      <p class="company-desc" style="margin-bottom:0;">
+        The DC SM Pampanga branch serves as a key distribution center in Central Luzon, supporting the retail operations of various Primer brands in the region and ensuring efficient product flow to meet customer demand.
+      </p>
+      <div class="company-mvg">
+        <div class="mvg-card">
+          <div class="mvg-icon">🎯</div>
+          <p class="mvg-label">Mission</p>
+          <p class="mvg-text">Add the company's official mission statement here.</p>
+        </div>
+        <div class="mvg-card">
+          <div class="mvg-icon">👁️</div>
+          <p class="mvg-label">Vision</p>
+          <p class="mvg-text">Add the company's official vision statement here.</p>
+        </div>
+        <div class="mvg-card">
+          <div class="mvg-icon">⚙️</div>
+          <p class="mvg-label">Objectives</p>
+          <p class="mvg-text">Add the company's core objectives or values here.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. WEEKLY ACCOMPLISHMENT -->
+<section id="weekly" style="background:var(--white);">
+  <div class="portfolio-section">
+    <div class="section-header">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Weekly Accomplishment Report</h2>
+    </div>
+    <div class="week-grid">
+      <!-- Week 1 -->
+      <div class="week-card">
+        <div class="week-num">01</div>
+        <p class="week-dates">Week 1 · [Date Range]</p>
+        <p class="week-report">Write your weekly narrative report here. Describe the tasks accomplished, skills applied, and experiences gained during this week of your OJT.</p>
+        <div class="week-photo-slot">📷 Insert Photo in Action</div>
+      </div>
+      <!-- Week 2 -->
+      <div class="week-card">
+        <div class="week-num">02</div>
+        <p class="week-dates">Week 2 · [Date Range]</p>
+        <p class="week-report">Write your weekly narrative report here. Describe the tasks accomplished, skills applied, and experiences gained during this week of your OJT.</p>
+        <div class="week-photo-slot">📷 Insert Photo in Action</div>
+      </div>
+      <!-- Week 3 -->
+      <div class="week-card">
+        <div class="week-num">03</div>
+        <p class="week-dates">Week 3 · [Date Range]</p>
+        <p class="week-report">Write your weekly narrative report here. Describe the tasks accomplished, skills applied, and experiences gained during this week of your OJT.</p>
+        <div class="week-photo-slot">📷 Insert Photo in Action</div>
+      </div>
+      <!-- Week 4 -->
+      <div class="week-card">
+        <div class="week-num">04</div>
+        <p class="week-dates">Week 4 · [Date Range]</p>
+        <p class="week-report">Write your weekly narrative report here. Describe the tasks accomplished, skills applied, and experiences gained during this week of your OJT.</p>
+        <div class="week-photo-slot">📷 Insert Photo in Action</div>
+      </div>
+      <!-- Week 5 -->
+      <div class="week-card">
+        <div class="week-num">05</div>
+        <p class="week-dates">Week 5 · [Date Range]</p>
+        <p class="week-report">Write your weekly narrative report here. Describe the tasks accomplished, skills applied, and experiences gained during this week of your OJT.</p>
+        <div class="week-photo-slot">📷 Insert Photo in Action</div>
+      </div>
+      <!-- Week 6 (add more as needed) -->
+      <div class="week-card">
+        <div class="week-num">06</div>
+        <p class="week-dates">Week 6 · [Date Range]</p>
+        <p class="week-report">Write your weekly narrative report here. Describe the tasks accomplished, skills applied, and experiences gained during this week of your OJT.</p>
+        <div class="week-photo-slot">📷 Insert Photo in Action</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. SYNERGY REFLECTIVE JOURNALS -->
+<section id="synergy" style="background:var(--cream);">
+  <div class="portfolio-section">
+    <div class="section-header">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Synergy Reflective Journals</h2>
+    </div>
+    <div class="conf-tabs">
+      <button class="conf-tab active" onclick="switchTab('day1', this)">Hybrid Conference — Day 1</button>
+      <button class="conf-tab" onclick="switchTab('day2', this)">Hybrid Conference — Day 2</button>
+    </div>
+
+    <!-- Day 1 -->
+    <div class="conf-panel active" id="panel-day1">
+      <div class="synergy-grid">
+        <div class="synergy-card">
+          <p class="synergy-label">Series 1</p>
+          <h4 class="synergy-title">Infographics / Picture</h4>
+          <div class="synergy-photo">📷 Insert Infographic or Photo</div>
+          <p class="synergy-text">Write your reflection or description for this series here.</p>
+        </div>
+        <div class="synergy-card">
+          <p class="synergy-label">Series 1 — Takeaways</p>
+          <h4 class="synergy-title">Key Learnings</h4>
+          <ul class="takeaway-list">
+            <li>Write your takeaway from this series here.</li>
+            <li>Add another important insight or learning gained.</li>
+            <li>Add a third takeaway or reflection point.</li>
+          </ul>
+        </div>
+        <div class="synergy-card">
+          <p class="synergy-label">Series 2</p>
+          <h4 class="synergy-title">Infographics / Picture</h4>
+          <div class="synergy-photo">📷 Insert Infographic or Photo</div>
+          <p class="synergy-text">Write your reflection or description for this series here.</p>
+        </div>
+        <div class="synergy-card">
+          <p class="synergy-label">Series 2 — Takeaways</p>
+          <h4 class="synergy-title">Key Learnings</h4>
+          <ul class="takeaway-list">
+            <li>Write your takeaway from this series here.</li>
+            <li>Add another important insight or learning gained.</li>
+            <li>Add a third takeaway or reflection point.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="conf-panel" id="panel-day2">
+      <div class="synergy-grid">
+        <div class="synergy-card">
+          <p class="synergy-label">Series 1</p>
+          <h4 class="synergy-title">Infographics / Picture</h4>
+          <div class="synergy-photo">📷 Insert Infographic or Photo</div>
+          <p class="synergy-text">Write your reflection or description for this series here.</p>
+        </div>
+        <div class="synergy-card">
+          <p class="synergy-label">Series 1 — Takeaways</p>
+          <h4 class="synergy-title">Key Learnings</h4>
+          <ul class="takeaway-list">
+            <li>Write your takeaway from this series here.</li>
+            <li>Add another important insight or learning gained.</li>
+            <li>Add a third takeaway or reflection point.</li>
+          </ul>
+        </div>
+        <div class="synergy-card">
+          <p class="synergy-label">Series 2</p>
+          <h4 class="synergy-title">Infographics / Picture</h4>
+          <div class="synergy-photo">📷 Insert Infographic or Photo</div>
+          <p class="synergy-text">Write your reflection or description for this series here.</p>
+        </div>
+        <div class="synergy-card">
+          <p class="synergy-label">Series 2 — Takeaways</p>
+          <h4 class="synergy-title">Key Learnings</h4>
+          <ul class="takeaway-list">
+            <li>Write your takeaway from this series here.</li>
+            <li>Add another important insight or learning gained.</li>
+            <li>Add a third takeaway or reflection point.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. CERTIFICATES -->
+<section id="certificates" style="background:var(--white);">
+  <div class="portfolio-section">
+    <div class="section-header">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Certificates</h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-photo">📜 Certificate Photo 1</div>
+        <p class="cert-name">Certificate of Completion / Participation</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-photo">📜 Certificate Photo 2</div>
+        <p class="cert-name">Add certificate name here</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-photo">📜 Certificate Photo 3</div>
+        <p class="cert-name">Add certificate name here</p>
+      </div>
+      <div class="cert-card">
+        <div class="cert-photo">📜 Certificate Photo 4</div>
+        <p class="cert-name">Add certificate name here</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. OJT FORMS & DOCUMENTS -->
+<section id="ojt-forms" style="background:var(--cream);">
+  <div class="portfolio-section">
+    <div class="section-header">
+      <span class="section-num">06</span>
+      <h2 class="section-title">OJT Forms & Documents</h2>
+    </div>
+    <div class="forms-grid">
+      <div class="form-item"><div class="form-icon">📋</div><span class="form-name">Certificate of Completion</span></div>
+      <div class="form-item"><div class="form-icon">✅</div><span class="form-name">Accomplished Evaluation Form (WFH & Employed)</span></div>
+      <div class="form-item"><div class="form-icon">🏫</div><span class="form-name">Training Institutional Evaluation Form</span></div>
+      <div class="form-item"><div class="form-icon">📊</div><span class="form-name">Evaluation of Training Program (SWEP)</span></div>
+      <div class="form-item"><div class="form-icon">📅</div><span class="form-name">DTR — WFH & Employed</span></div>
+      <div class="form-item"><div class="form-icon">📄</div><span class="form-name">Resume / Curriculum Vitae</span></div>
+      <div class="form-item"><div class="form-icon">📝</div><span class="form-name">OJT Accomplished Forms</span></div>
+      <div class="form-item"><div class="form-icon">⚖️</div><span class="form-name">A. Notarized Waiver</span></div>
+      <div class="form-item"><div class="form-icon">📜</div><span class="form-name">B. Signed Rules and Regulations</span></div>
+      <div class="form-item"><div class="form-icon">📩</div><span class="form-name">C. SWEP Application Form</span></div>
+      <div class="form-item"><div class="form-icon">👨‍👩‍👧</div><span class="form-name">D. Parental Consent</span></div>
+    </div>
+    <div class="forms-note">
+      📌 <strong>Note:</strong> Attach scanned copies or photos of each completed form in this section. Make sure all signatures and official stamps are clearly visible.
+    </div>
+  </div>
+</section>
+
+<!-- 7. DOCUMENTATION -->
+<section id="documentation" style="background:var(--white);">
+  <div class="portfolio-section">
+    <div class="section-header">
+      <span class="section-num">07</span>
+      <h2 class="section-title">Documentation</h2>
+    </div>
+    <div class="doc-photo-grid">
+      <div class="doc-slot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        Interview Simulation
+      </div>
+      <div class="doc-slot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        Participation / Meetings
+      </div>
+      <div class="doc-slot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        Orientation
+      </div>
+      <div class="doc-slot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        Culminating Meeting
+      </div>
+      <div class="doc-slot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        Add Photo Here
+      </div>
+      <div class="doc-slot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>
+        Add Photo Here
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-name">Lawrence Louise G. Manalili</p>
+  <p class="footer-sub">BSBA · Marketing Management · Primer Group of Companies</p>
+  <div class="footer-divider"></div>
+  <p class="footer-note">OJT E-Portfolio · All rights reserved</p>
+</footer>
+
+<script>
+  function switchTab(day, btn) {
+    document.querySelectorAll('.conf-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.conf-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('panel-' + day).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
